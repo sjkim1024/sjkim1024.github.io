@@ -216,6 +216,35 @@
         }
         .cv-link:hover { background: #1557b0; }
 
+        /* Photos gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .gallery-caption {
+            font-size: 13px;
+            color: #777;
+            text-align: center;
+            margin-top: 6px;
+        }
+        @media (max-width: 640px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -260,6 +289,7 @@
             <li><a href="#presentations">Presentations</a></li>
             <li><a href="#teaching">Teaching</a></li>
             <li><a href="#cv">CV</a></li>
+            <li><a href="#photos">Photos</a></li>
         </ul>
     </div>
 </nav>
@@ -278,9 +308,7 @@
                 </div>
                 <div class="email">Email: <a href="mailto:seongjinkim@skku.edu">seongjinkim@skku.edu</a></div>
             </div>
-            <!-- 사진을 넣으려면: 아래 div를 삭제하고, 아래 img 태그의 주석을 해제하세요 -->
-            <div class="photo-placeholder">Photo<br>(profile.jpg)</div>
-            <!-- <img src="profile.jpg" alt="Seongjin Kim" class="home-photo"> -->
+            <img src="profile.jpg" alt="Seongjin Kim" class="home-photo">
         </div>
     </section>
 
@@ -424,6 +452,25 @@
         <h2>Curriculum Vitae</h2>
         <p style="margin-bottom: 16px;">You can download my CV as a PDF.</p>
         <a href="CV_SeongjinKim.pdf" class="cv-link">Download CV (PDF)</a>
+    </section>
+
+    <!-- Photos -->
+    <section id="photos">
+        <h2>Photos</h2>
+        <div class="gallery-grid">
+            <div>
+                <img src="photo1.jpg" alt="Photo 1">
+                <div class="gallery-caption">Caption 1</div>
+            </div>
+            <div>
+                <img src="photo2.jpg" alt="Photo 2">
+                <div class="gallery-caption">Caption 2</div>
+            </div>
+            <div>
+                <img src="photo3.jpg" alt="Photo 3">
+                <div class="gallery-caption">Caption 3</div>
+            </div>
+        </div>
     </section>
 
 </div>
