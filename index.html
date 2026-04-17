@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seongjin Kim</title>
+    <meta name="description" content="Seongjin Kim - Researcher at Sungkyunkwan University, Center for AI Finance. Financial Mathematics, Stochastic Analysis, Kyle-Back Equilibrium.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background: #fafafa;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+        nav .site-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        nav .nav-links { list-style: none; display: flex; gap: 28px; }
+        nav .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav .nav-links a:hover { color: #1a73e8; }
+
+        /* Hamburger menu for mobile */
+        .hamburger { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: #333; }
+
+        /* Main content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        /* Home section */
+        .home-section {
+            display: flex;
+            gap: 36px;
+            align-items: flex-start;
+        }
+        .home-text { flex: 1; }
+        .home-photo {
+            width: 180px;
+            height: 220px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            flex-shrink: 0;
+        }
+        .photo-placeholder {
+            width: 180px;
+            height: 220px;
+            border-radius: 6px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 13px;
+            text-align: center;
+            flex-shrink: 0;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #1a1a1a;
+        }
+        .name-kr {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+        .affiliation {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 16px;
+        }
+        .email { font-size: 14px; color: #555; }
+        .email a { color: #1a73e8; text-decoration: none; }
+        .email a:hover { text-decoration: underline; }
+
+        /* Section styling */
+        section { margin-top: 48px; }
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1a73e8;
+        }
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #444;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        /* Research interests */
+        .research-intro { margin-bottom: 12px; }
+        .interests-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .interests-list li {
+            background: #e8f0fe;
+            color: #1a5fb4;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Education */
+        .edu-item { margin-bottom: 16px; }
+        .edu-degree { font-weight: 600; color: #1a1a1a; }
+        .edu-school { color: #555; }
+        .edu-detail { font-size: 14px; color: #777; }
+
+        /* Publications */
+        .pub-item {
+            margin-bottom: 18px;
+            padding-left: 16px;
+            border-left: 3px solid #e0e0e0;
+        }
+        .pub-item:hover { border-left-color: #1a73e8; }
+        .pub-title {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .pub-title a { color: #1a73e8; text-decoration: none; }
+        .pub-title a:hover { text-decoration: underline; }
+        .pub-authors { font-size: 14px; color: #555; margin-top: 2px; }
+        .pub-journal { font-size: 14px; color: #777; font-style: italic; margin-top: 2px; }
+        .pub-links { margin-top: 4px; }
+        .pub-links a {
+            font-size: 13px;
+            color: #1a73e8;
+            text-decoration: none;
+            margin-right: 12px;
+        }
+        .pub-links a:hover { text-decoration: underline; }
+        .pub-status {
+            display: inline-block;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .status-published { background: #e6f4ea; color: #137333; }
+        .status-revision { background: #fef7e0; color: #b06000; }
+
+        /* Presentations */
+        .pres-category { margin-bottom: 24px; }
+        .pres-item { margin-bottom: 14px; padding-left: 16px; border-left: 3px solid #e0e0e0; }
+        .pres-title { font-weight: 600; color: #1a1a1a; font-style: italic; }
+        .pres-venue { font-size: 14px; color: #555; margin-top: 2px; }
+        .pres-type {
+            display: inline-block;
+            font-size: 12px;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-weight: 500;
+            background: #f0f0f0;
+            color: #555;
+        }
+        .pres-award { background: #fce8e6; color: #c5221f; }
+
+        /* Teaching */
+        .teaching-item { margin-bottom: 10px; font-size: 15px; }
+
+        /* CV link */
+        .cv-link {
+            display: inline-block;
+            padding: 10px 24px;
+            background: #1a73e8;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .cv-link:hover { background: #1557b0; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            color: #999;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .home-section { flex-direction: column-reverse; align-items: center; text-align: center; }
+            .interests-list { justify-content: center; }
+            nav .nav-links { display: none; }
+            nav .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 16px 24px;
+                gap: 16px;
+            }
+            .hamburger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="site-name">Seongjin Kim</a>
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#presentations">Presentations</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#cv">CV</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- About -->
+    <section id="about">
+        <div class="home-section">
+            <div class="home-text">
+                <h1>Seongjin Kim</h1>
+                <div class="name-kr">김성진</div>
+                <div class="affiliation">
+                    Center for AI Finance (CAIF)<br>
+                    Sungkyunkwan University, Korea
+                </div>
+                <div class="email">Email: <a href="mailto:seongjinkim@skku.edu">seongjinkim@skku.edu</a></div>
+            </div>
+            <!-- 사진을 넣으려면: 아래 div를 삭제하고, 아래 img 태그의 주석을 해제하세요 -->
+            <div class="photo-placeholder">Photo<br>(profile.jpg)</div>
+            <!-- <img src="profile.jpg" alt="Seongjin Kim" class="home-photo"> -->
+        </div>
+    </section>
+
+    <!-- Research Interests -->
+    <section id="research">
+        <h2>Research Interests</h2>
+        <p class="research-intro">
+            My research lies in the fields of financial mathematics and stochastic analysis. I am particularly interested in asymmetric information problems in market microstructure, with a focus on the Kyle-Back equilibrium framework.
+        </p>
+        <ul class="interests-list">
+            <li>Financial Mathematics</li>
+            <li>Stochastic Analysis</li>
+            <li>Optimal Control</li>
+            <li>Market Microstructure</li>
+            <li>Kyle-Back Equilibrium</li>
+            <li>DeFi &amp; AMMs</li>
+        </ul>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="edu-item">
+            <div class="edu-degree">Ph.D. in Mathematical Sciences</div>
+            <div class="edu-school">Ulsan National Institute of Science and Technology (UNIST), Ulsan, Korea</div>
+            <div class="edu-detail">September 2020 – February 2026 &nbsp;|&nbsp; Advisor: Jin Hyuk Choi</div>
+        </div>
+        <div class="edu-item">
+            <div class="edu-degree">B.S. in Mathematics Education</div>
+            <div class="edu-school">Sangmyung University, Seoul, Korea</div>
+            <div class="edu-detail">March 2014 – August 2020</div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+        <h2>Publications</h2>
+
+        <h3>Published</h3>
+
+        <div class="pub-item">
+            <div class="pub-title"><a href="https://arxiv.org/abs/2604.10194">Mandatory Disclosure in Oligopolistic Market Making</a></div>
+            <div class="pub-authors">Seongjin Kim and Jin Hyuk Choi</div>
+            <div class="pub-journal">Finance Research Letters, Volume 100, June 2026, 109994</div>
+            <div class="pub-links">
+                <a href="https://arxiv.org/abs/2604.10194">[arXiv]</a>
+            </div>
+            <span class="pub-status status-published">Published</span>
+        </div>
+
+        <div class="pub-item">
+            <div class="pub-title">Multiplicity Results of Solutions to the Double Phase Anisotropic Variational Problems Involving Variable Exponent</div>
+            <div class="pub-authors">Jinxia Cen, Seongjin Kim, Yun-Ho Kim, and Shengda Zeng</div>
+            <div class="pub-journal">Advances in Differential Equations, 28(5/6): 467–504, 2023</div>
+            <span class="pub-status status-published">Published</span>
+        </div>
+
+        <div class="pub-item">
+            <div class="pub-title">Multiplicity of Solutions for Double Phase Equations with Concave–Convex Nonlinearities</div>
+            <div class="pub-authors">Woo Jin Joe, Seongjin Kim, Min Wook Oh, and Yun-ho Kim</div>
+            <div class="pub-journal">Journal of Applied Analysis &amp; Computation, 11(6): 2921–2946, 2021</div>
+            <span class="pub-status status-published">Published</span>
+        </div>
+
+        <h3>Under Revision</h3>
+
+        <div class="pub-item">
+            <div class="pub-title">Oligopolistic Kyle Models: Discrete-Time Limits and Continuous-Time Admissibility</div>
+            <div class="pub-authors">Jin Hyuk Choi, Seongjin Kim, and Byung Hwa Lim</div>
+            <div class="pub-journal">Under revision at SIAM Journal on Financial Mathematics</div>
+            <span class="pub-status status-revision">Under Revision</span>
+        </div>
+    </section>
+
+    <!-- Presentations -->
+    <section id="presentations">
+        <h2>Presentations</h2>
+
+        <h3>Conference Talks</h3>
+
+        <div class="pres-category">
+            <div class="pres-item">
+                <div class="pres-title">Oligopolistic Kyle Models: Discrete-Time Limits and Continuous-Time Admissibility</div>
+                <div class="pres-venue">
+                    The 2nd Sookmyung-TMU Mathematical Finance Workshop with Young Researchers — Sookmyung Women's University, Seoul, Mar. 2026
+                    &nbsp;<span class="pres-type">Oral</span>
+                </div>
+            </div>
+
+            <div class="pres-item">
+                <div class="pres-title">Oligopolistic Market Equilibrium and the Effect of Observing Noise Trades</div>
+                <div class="pres-venue">
+                    Quantitative Methods in Finance 2025 — University of Technology Sydney (UTS), Dec. 2025
+                    &nbsp;<span class="pres-type">Oral</span>
+                </div>
+            </div>
+
+            <div class="pres-item">
+                <div class="pres-title">Oligopolistic Market Equilibrium and the Effect of Observing Noise Trades</div>
+                <div class="pres-venue">
+                    Quantitative Finance Conference 2025 — National University of Singapore (NUS), Aug. 2025
+                    &nbsp;<span class="pres-type">Oral</span>
+                </div>
+            </div>
+
+            <div class="pres-item">
+                <div class="pres-title">Informed Trader's Knowledge about Noise Trades and Its Impact on Oligopolistic Market Equilibrium</div>
+                <div class="pres-venue">
+                    KSIAM Annual Meeting 2023 — Gwangju, Nov. 2023
+                    &nbsp;<span class="pres-type">Poster</span>
+                    &nbsp;<span class="pres-type pres-award">Excellent Poster Award</span>
+                </div>
+            </div>
+        </div>
+
+        <h3>Invited Lectures</h3>
+
+        <div class="pres-category">
+            <div class="pres-item">
+                <div class="pres-title">Principles of Option Pricing</div>
+                <div class="pres-venue">Sangmyung University, Apr. 13, 2026</div>
+            </div>
+
+            <div class="pres-item">
+                <div class="pres-title">Mathematics of Insider Trading: Focusing on the Kyle Model</div>
+                <div class="pres-venue">Sangmyung University, Feb. 26, 2026</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+        <h2>Teaching</h2>
+        <div class="teaching-item">
+            <strong>AI Statistics</strong> — Sungkyunkwan University, 2026 Spring
+        </div>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+        <h2>Curriculum Vitae</h2>
+        <p style="margin-bottom: 16px;">You can download my CV as a PDF.</p>
+        <a href="CV_SeongjinKim.pdf" class="cv-link">Download CV (PDF)</a>
+    </section>
+
+</div>
+
+<footer>
+    &copy; 2026 Seongjin Kim. Last updated: April 2026.
+</footer>
+
+</body>
+</html>
